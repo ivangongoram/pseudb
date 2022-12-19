@@ -1,0 +1,26 @@
+{
+  "name": "pseudo-db",
+  "version": "1.0.0",
+  "description": "Pseudo database made in JSON",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivangongoram/pseudo-db.git"
+  },
+  "keywords": [
+    "DB",
+    "Data",
+    "base",
+    "JSON"
+  ],
+  "author": "Ivan Gongora M <ivan.gongoram@gmail.com> (ivangongoram.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivangongoram/pseudo-db/issues"
+  },
+  "homepage": "https://github.com/ivangongoram/pseudo-db#readme",
+  "type": "module",
+}
