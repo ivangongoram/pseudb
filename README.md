@@ -1,1 +1,1 @@
-# pseudo-db
+# pseudb
