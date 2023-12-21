@@ -170,7 +170,7 @@ function requireUncached(module) {
 
 function read(file) {
     try {
-        const data = fs.readFileSync(`./database/db/${file}.json`, 'utf8');
+        const data = fs.readFileSync(dirDb(file), 'utf8');
         return data ? JSON.parse(data) : data;
     } catch (err) {
         throw new Error(err);
