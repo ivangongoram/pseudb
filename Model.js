@@ -23,8 +23,8 @@ class Model
         table.data.push(attributes);
 
         return {
-            get: attributes,
-            save: function () {return Model.#save(table)}
+            get: () => {return attributes},
+            save: () => {return Model.#save(table)}
         };
     }
 
@@ -108,9 +108,9 @@ class Model
         Model.fillable = this.fillable;
 
         return {
-            get: Model.table.data[0],
-            delete: function() {return Model.#delete()},
-            update: function(parameters) {return Model.#update(parameters)}
+            get: () => {return Model.table.data[0]}, //TODO: first ??
+            delete: () => {return Model.#delete()},
+            update: (parameters) => {return Model.#update(parameters)}
         }
     }
 
@@ -138,11 +138,11 @@ class Model
         Model.fillable = this.fillable;
 
         return {
-            get: Model.table.data,
-            first: Model.table.data[0],
-            where: function(column, operator, value) {return Model.where(column, operator, value)},
-            delete: function() {return Model.#delete()},
-            update: function(parameters) {return Model.#update(parameters)}
+            get: () => {return Model.table.data},
+            first: () => {return Model.table.data[0]},
+            where: (column, operator, value) => {return Model.where(column, operator, value)},
+            delete: () => {return Model.#delete()},
+            update: (parameters) => {return Model.#update(parameters)}
         }
     }
 
