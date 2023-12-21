@@ -29,7 +29,7 @@ class Model
     }
 
     static #attributes(attributes){
-        let tableAttributes = requireUncached(`../../database/tables/${this.table.name}_table.js`);
+        let tableAttributes = requireUncached(dirTable(this.table.name));
         const buildObject = {};
         const fillable = this.fillable;
         const includeKeys = ['id', 'created_at', 'updated_at'];
@@ -47,7 +47,7 @@ class Model
         if(this.table.data.length === 0) return false;
         let table = read(this.table.name);
         const fillable = this.fillable;
-        const tableAttributes = requireUncached(`../../database/tables/${table.name}_table.js`);
+        const tableAttributes = requireUncached(dirTable(table.name));
 
         this.table.data.forEach(element => {
             const index = table.data.findIndex(x => JSON.stringify(x) === JSON.stringify(element));
@@ -91,7 +91,7 @@ class Model
         const replacer = (key, value) => typeof value === "bigint" ? value.toString() : value;
         const data = JSON.stringify(table, replacer,2);
         try {
-            fs.writeFileSync(`./database/db/${table.name}.json`, data);
+            fs.writeFileSync(dirDb(table.name), data);
             return true;
         } catch (err) {
             throw new Error(err);
@@ -150,7 +150,7 @@ class Model
         const file = this.table?.name ?? this.table;
         this.table = read(file);
 
-        fs.watch(`./database/db/${file}.json`, (eventType, filename) => {
+        fs.watch(dirDb(file), (eventType, filename) => {
             if (filename && eventType === 'change') {
                 this.table = read(file);
             }
@@ -181,6 +181,14 @@ function maxId(table) {
     return (table.maxId !== null)
         ? Math.max(...Object.values(table.data).map(data => Number(data.id)))
         : null;
+}
+
+function dirTable(name) {
+    return `../../database/tables/${name}_table.js`;
+}
+
+function dirDb(name) {
+    return `./database/db/${name}.json`;
 }
 
 module.exports = Model;
