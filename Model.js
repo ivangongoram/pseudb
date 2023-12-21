@@ -63,11 +63,10 @@ class Model
             table.data.splice(index, 1, element);
         });
 
-        table.maxId = (table.maxId !== null)
-            ? table.maxId = Math.max(...Object.values(table.data).map(data => Number(data.id)))
-            : null;
+        table.maxId = maxId(table);
 
         Model.#save(table);
+        Model.refresh();
         return true;
     }
 
@@ -81,11 +80,10 @@ class Model
             table.data.splice(index, 1);
         }
 
-        table.maxId = (table.maxId !== null)
-            ? table.maxId = Math.max(...Object.values(table.data).map(data => Number(data.id)))
-            : null;
+        table.maxId = maxId(table);
 
         Model.#save(table);
+        Model.refresh();
         return true;
     }
 
@@ -147,6 +145,7 @@ class Model
             update: function(parameters) {return Model.#update(parameters)}
         }
     }
+
     static initialize() {
         const file = this.table?.name ?? this.table;
         this.table = read(file);
@@ -156,6 +155,11 @@ class Model
                 this.table = read(file);
             }
         });
+    }
+
+    static refresh() {
+        const file = this.table?.name ?? this.table;
+        this.table = read(file);
     }
 }
 
@@ -171,6 +175,12 @@ function read(file) {
     } catch (err) {
         throw new Error(err);
     }
+}
+
+function maxId(table) {
+    return (table.maxId !== null)
+        ? Math.max(...Object.values(table.data).map(data => Number(data.id)))
+        : null;
 }
 
 module.exports = Model;
