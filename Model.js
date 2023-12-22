@@ -56,7 +56,7 @@ class Model
             fillable.forEach(key => {
                 if (attributes[key] !== undefined){
                     element[key] = attributes[key];
-                    if (Object.keys(tableAttributes).indexOf('updated_at') !== -1 ) element['updated_at'] = new Date();
+                    if (Object.keys(tableAttributes).indexOf('updated_at') !== -1 ) element['updated_at'] = tableAttributes.updated_at;
                 }
             });
 
