@@ -1,6 +1,6 @@
 {
   "name": "pseudb",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Pseudo database made in JSON",
   "main": "Model.js",
   "scripts": {
