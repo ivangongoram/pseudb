@@ -1,5 +1,10 @@
 # PseuDB (Under Construction)
 
+> [!TIP]
+> **Example Project: Explore as the Documentation Evolves**
+>
+> The project documentation is under construction, but you can explore our example project to understand how our library works in action. We're working to provide you with a complete guide soon. Thank you for your interest! ([Example](https://github.com/ivangongoram/example.git)).
+
 1. [Introduction](#introduction)
 2. [Model Conventions](#model-conventions)
 3. [Inserting & Updating Models](#inserting--updating-models)
@@ -65,6 +70,3 @@ queries, apply filters, and sort data to extract the information you need effici
          .where('age', '>', 35)
          .get();
 ```
-
-> [!SUMMARY] Example Project: Explore as the Documentation Evolves
-> The project documentation is under construction, but you can explore our example project to understand how our library works in action. We're working to provide you with a complete guide soon. Thank you for your interest! ([Example](https://github.com/ivangongoram/example.git)).
